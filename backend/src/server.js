@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true })); // Membaca body request bertipe
 app.get('/', (req, res) => {
     res.status(200).json({
         success: true,
-        message: 'Selamatdatang di API Portofolio Dinamis!',
+        message: 'Selamat datang di API Portofolio Dinamis!',
         version: '1.0.0'
     });
 });
