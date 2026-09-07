@@ -6,6 +6,9 @@ const cors = require('cors');
 //2. Load file konfigurasi .env
 dotenv.config();
 
+// Load koneksi ke database
+const db = require('./config/db');
+
 //3. Inisialisasi aplikasi
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,8 +35,20 @@ app.get('/api/status', (req, res) => {
         timestamp: new Date().toISOString()
     });
 });
+// Tugas- Tantangan 1
+app.get('/api/biodata', (req, res) => {
+    res.status(200).json({
+        "status": true,
+        "data": {
+            "nama": "Kailah Balqis Matondang", 
+            "kelas": "XI RPL 1",
+            "cita-cita": "Filmmaker & Fullstack",
+            "hobi": "Berkarya"
+        },
+    });
+});
 
- //6. Middleware untuk menangani route yang tidak ditemukan (404 Not Found)
+//6. Middleware untuk menangani route yang tidak ditemukan (404 Not Found)
  app.use((req, res) => {
     res.status(404).json({
         success: false,
