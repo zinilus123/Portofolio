@@ -35,7 +35,7 @@ const updateProfile = async (req, res) => {
             const data = req.body;
 
             //Validasi sederhana: pastikan nama dan role tidak kosong
-            if (!data.name || data.role) {
+            if (!data.name || !data.role) {
                 return res.status(400).json({
                     success: false,
                     message: `Profil dengan ID ${id} tidak ditemukan.`
