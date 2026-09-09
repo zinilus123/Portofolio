@@ -11,7 +11,7 @@ const db = require('./config/db');
 
 //3. Inisialisasi aplikasi
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 //4. Middleware dasar
 app.use(cors()); // Mengizinkan request dari domain lain (Frontend)
@@ -47,6 +47,12 @@ app.get('/api/biodata', (req, res) => {
         },
     });
 });
+
+//==========================================================
+// ROUTES API (Mendaftarkan route dari folder routes/)
+//==========================================================
+const profileRoutes = require('./routes/profileRoutes');
+app.use('/api/profile', profileRoutes);
 
 //6. Middleware untuk menangani route yang tidak ditemukan (404 Not Found)
  app.use((req, res) => {
