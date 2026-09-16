@@ -69,4 +69,3 @@ app.use('/api/profile', profileRoutes);
     console.log(`Environment: ${process.env.NODE_ENV || 'development'}`)
     console.log(`======================================`);
  });
- 
