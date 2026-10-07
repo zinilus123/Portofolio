@@ -14,20 +14,20 @@ const getExperienceById = async (id) => {
 
 // membuat data
 const createExperience = async (data) => {
-    const {title, company, location, start_date, end_date, is_current, description} = data;
+    const {type, title, company, location, start_date, end_date, is_current, description} = data;
     const [result] = await db.query(
         `INSERT INTO experiences (title, company, location, start_date, end_date, is_current, description) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [title, company, location, start_date, end_date, is_current, description || false]
+        [type, title, company, location, start_date, end_date, is_current, description || false]
     );
     return result;
 };
 
 // mengedit data
 const updateExperience = async (id, data) => {
-    const {title, company, location, start_date, end_date, is_current, description} = data;
+    const {type, title, company, location, start_date, end_date, is_current, description} = data;
     const [result] = await db.query(
-        `UPDATE experiences SET title = ?, company = ?, location = ?, start_date = ?, end_date = ?, is_current = ?, description = ? WHERE id = ?`,
-        [title, company, location, start_date, end_date, is_current, description, id]
+        `UPDATE experiences SET type = ?, title = ?, company = ?, location = ?, start_date = ?, end_date = ?, is_current = ?, description = ? WHERE id = ?`,
+        [type, title, company, location, start_date, end_date, is_current, description, id]
     );
     return result;
 };
