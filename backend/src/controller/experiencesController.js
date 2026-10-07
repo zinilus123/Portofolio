@@ -1,60 +1,59 @@
 const experiencesModel = require('../models/experienceModel');
 
-const getAllSkills = async (req, res) => {
+const getAllExperiences = async (req, res) => {
     try {
-        const skills = await skillModel.getAllSkills();
-        res.status(200).json({success: true, total: skills.length, data: skills});
+        const experiences = await experienceModel.getAllExperiences();
+        res.status(200).json({success: true, total: experiences.length, data: experiences});
     } catch (error) {
         res.status(500).json({success: false, message: 'Server Error', error: error.message});
     }
 };
 
-const getSkillById = async (req, res) => {
+const getExperiencesById = async (req, res) => {
     try {
         const { id } = req.params;
-        const skill = await skillModel.getSkillById(id);
-        if (!skill) return res.status(404).json({success: false, message: 'Data tidak ditemukan'});
+        const experience = await experienceModel.getExperienceById(id);
+        if (!experience) return res.status(404).json({success: false, message: 'Data tidak ditemukan'});
         res.status(200).json({success: true, data: skill});
     } catch (error) {
         res.status(500).json({success: false, message: 'Server Error', error: error.message});
     }
 };
 
-const createSkill = async (req, res) => {
+const createExperience = async (req, res) => {
     try {
         const data = req.body;
-        if (!data.name) return res.status(400).json({success: false, message: 'Nama skill wajib diisi'});
-        const result = await skillModel.createSkill(data);
-        res.status(201).json({success: true, message: 'Skill ditambahkan', data: { id: result.insertId}});
+        if (!data.name) return res.status(400).json({success: false, message: 'Nama experience wajib diisi'});
+        const result = await experienceModel.createExperience(data);
+        res.status(201).json({success: true, message: 'Experience ditambahkan', data: { id: result.insertId}});
     } catch (error) {
         res.status(500).json({success: false, message: 'Server Error', error: error.message});
     }
 };
 
-const updateSkill = async (req, res) => {
+const updateExperience = async (req, res) => {
     try {
         const { id } = req.params;
         const data = req.body;
-        if (!data.name) return res.status(400).json({success: false, message: 'Name skill wajib diisi'});
+        if (!data.name) return res.status(400).json({success: false, message: 'Name experience wajib diisi'});
 
-        const result = await skillModel.updateSkill(id, data);
+        const result = await experienceModel.updateExperience(id, data);
         if (result.affectedRows === 0) return res.status(404).json({ success: false, message: 'Data tidak ditemukan' });
-        res.status(200).json({ success: true, message: 'Skill diperbarui' });
+        res.status(200).json({ success: true, message: 'Experience diperbarui' });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 
-const deleteSkill = async (req, res) => {
+const deleteExperience = async (req, res) => {
     try {
         const { id } = req.params;
-        const result = await skillModel.deleteSkill(id);
+        const result = await experienceModel.deleteExperience(id);
         if (result.affectedRows === 0) return res.status(404).json({ success: false, message: 'Data tidak ditemukan'});
-        res.status(200).json({ success: true, message: 'Skill dihapus' });
+        res.status(200).json({ success: true, message: 'Experience dihapus' });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Server Error', error: error.message });
     }
 };
 
-module.exports = { getAllSkills, getSkillById, createSkill, updateSkill, deleteSkill };
-// LAST WORKED ON  - SS SKILLS DAN EXPRERIENCE GET ALL, GET BY ID, CREATE, UPDATE, DELETE
+module.exports = { getAllExperiences, getExperiencesById, createExperience, updateExperience, deleteExperience };
